@@ -1,0 +1,27 @@
+{
+  "name": "toolbox",
+  "version": "1.0.0",
+  "description": "Creating an all-encompassing solution for all Baylor Scott & White Health related web projects for Marketing.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/minjagaso/toolbox.git"
+  },
+  "keywords": [
+    "bswh",
+    "web",
+    "bootstrap",
+    "angular",
+    "jquery",
+    "health"
+  ],
+  "author": "Minja Gaso",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/minjagaso/toolbox/issues"
+  },
+  "homepage": "https://github.com/minjagaso/toolbox#readme"
+}
