@@ -1,0 +1,14 @@
+.collapsible {
+        border: none;
+        box-shadow: none;
+        transform: none;
+
+        & > li {
+                border: 1px solid #ddd;
+                margin-bottom: 20px;
+        }
+        &-header i {
+                position: relative;
+                left: -0.7rem;
+        }
+}

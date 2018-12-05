@@ -1,0 +1,49 @@
+.actions {
+        cursor: pointer;
+        display: flex;
+        padding: 0.5rem;
+}
+.contain {
+        &.right {
+                margin-left: auto;
+        }
+}
+.action {
+        border-radius: 8px;
+        display: inline-block;
+        font-weight: bold;
+        padding: 4px 12px;
+        text-transform: uppercase;
+        &:hover {
+                color: #fff;
+        }
+        & > * {
+                vertical-align: middle;
+        }
+}
+.delete {
+        border: 1px solid color("red", "base");
+        color: color("red", "base");
+
+        &:hover {
+                background-color: color("red", "base");
+        }
+}
+.copy {        
+        border: 1px solid color("light-blue", "base");
+        color: color("light-blue", "base");
+        margin-left: 8px;
+
+        &:hover {
+                background-color: color("light-blue", "base");
+        }
+}
+.drag {
+        border: 1px solid color("grey", "base");
+        color: color("grey", "base");
+
+        &:hover {
+                background-color: color("grey", "lighten-4");
+                color: color("grey", "base");
+        }
+}

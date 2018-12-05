@@ -1,0 +1,66 @@
+block content
+#referralForm
+        .container(id="")
+                .row
+                        .col-sm-12
+                                h1=doc.form.title
+                                p=doc.form.description
+                if doc.form.questions 
+                        each question, index in doc.form.questions                                  
+                                .row
+                                        .col-sm-12
+                                                -var questionNameAttr = "questions[" + index + "]";
+                                                .row
+                                                        .col-sm-12(id="question_" + index + "_general")
+                                                                div                                                                
+                                                                        label(for=questionNameAttr + "['title']") Question Label
+                                                                        if question.type == 'text'
+                                                                                input(type=question.type, class="form-control"
+                                                                                        name=questionNameAttr + "[title]", 
+                                                                                        id=questionNameAttr + "[title]", 
+                                                                                        placeholder=question.title + (question.validation.is_required==true === true ? '*' : ''))   
+                                                                        else if question.type == 'textarea'                                                                                
+                                                                                textarea(class="form-control"
+                                                                                        name=questionNameAttr + "[title]", 
+                                                                                        id=questionNameAttr + "[title]", 
+                                                                                        placeholder=question.title + (question.validation.is_required==true === true ? '*' : ''))  
+                                                                        else if question.type == 'dropdown'
+                                                                                p Unsupported...    
+                                                                        else if question.type == 'checkbox' || question.type == 'radio'
+                                                                                label(for="", style="left:0;position:relative;top:0;")= question.title
+                                                                                each possibleAnswer, indexB in question.answers 
+                                                                                        -var possibleAnswerNameAttr = "questions[" + index + "][answers][" + indexB + "]";
+                                                                                        div
+                                                                                                label(for="", style="left:0;position:relative;top:0;font-weight:normal;")
+                                                                                                        input(type=question.type, name=possibleAnswerNameAttr + "[value]", id=possibleAnswerNameAttr + "[value]", value=possibleAnswer.value)
+                                                                                                        span #{possibleAnswer.label}                                                    
+                                                        //- .col-sm-12(id="question_" + index + "_validation")   
+                                                                //- div.required                                                            
+                                                                //-         label(for=questionNameAttr + "[validation][is_required]", class="active") Required
+                                                                //-         select(name=questionNameAttr + "[validation][is_required]")
+                                                                //-                 option(value="true", selected=question.validation.is_required==true) Yes
+                                                                //-                 option(value="false", selected=question.validation.is_required==false) No 
+                                                                //- div.validation-type
+                                                                //-         label(for=questionNameAttr + "[validation][type]", class="active") Type
+                                                                //-         select(name=questionNameAttr + "[validation][type]")
+                                                                //-                 option(value="none", selected=question.validation.type=='none') None
+                                                                //-                 option(value="phone", selected=question.validation.type=='phone') Phone Number
+                                                                //-                 option(value="email", selected=question.validation.type=='email') Email Address 
+                                                        //- .col-sm-12(id="question_" + index + "_answers")  
+                                                        //-         each possibleAnswer, indexB in question.answers 
+                                                        //-                 -var possibleAnswerNameAttr = "questions[" + index + "][answers][" + indexB + "]";
+                                                        //-                 div.possible-answer.row(style="display:none;")
+                                                        //-                         .col.s3
+                                                        //-                                 label(for=possibleAnswerNameAttr + "[label]", class="active") Label
+                                                        //-                                 input(type='text', name=possibleAnswerNameAttr + "[label]", id=possibleAnswerNameAttr + "[label]", value=possibleAnswer.label)
+                                                        //-                         .col.s3
+                                                        //-                                 label(for=possibleAnswerNameAttr + "[value]", class="active") Value
+                                                        //-                                 input(type='text', name=possibleAnswerNameAttr + "[value]", id=possibleAnswerNameAttr + "[value]", value=possibleAnswer.value)
+                                                        //-                         .col-s3
+                                                        //-                                 if indexB == question.answers.length - 1
+                                                        //-                                         a(class="btn add-answer")
+                                                        //-                                                 i(class="material-icons") add
+                                                        //-                                                 span New 
+                                                        //-                                 a(class="btn remove-answer")
+                                                        //-                                         i(class="material-icons") cancel
+                                                        //-                                         span Delete                                                                                                                     

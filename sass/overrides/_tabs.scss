@@ -1,0 +1,12 @@
+.tabs {
+        overflow: hidden;
+        .indicator {
+                display: none;
+        }
+        a {
+                &:hover,
+                &.active {
+                        border-bottom: 2px solid $tabs-underline-color;
+                }
+        }
+}

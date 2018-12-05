@@ -1,0 +1,8 @@
+block content
+        if doc.form.questions 
+                each question, index in doc.form.questions                                  
+                        .form-group                                                           
+                                if question.type == 'text'
+                                        input(type=question.type, class="form-control", field=question.title, required=question.validation.is_required,
+                                                placeholder=question.title + (question.validation.is_required==true === true ? '*' : ''))   
+        

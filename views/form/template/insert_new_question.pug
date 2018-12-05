@@ -1,0 +1,78 @@
+mixin new-question(questions, index)
+        -var question = doc.form.questions[index - 1];
+        li.hoverable#copy-from(style="display:none;")                                                
+                .actions
+                        .contain
+                                span.action.drag
+                                        i.material-icons.move drag_handle
+                                        span Move
+                        .contain.right
+                                span.action.delete
+                                        i.material-icons delete
+                                        span Delete
+                                span.action.copy
+                                        i.material-icons content_copy
+                                        span Copy
+                .divider
+                .collapsible-header
+                        i.material-icons.toggle arrow_drop_down
+                        span
+                .collapsible-body
+                        -var questionNameAttr = "questions[" + index + "]";
+                        .row
+                                input(type="hidden", name=questionNameAttr + "[sort_order]")
+                                .col.s12
+                                        ul.tabs
+                                                li.tab
+                                                        a(href="#question_" + index + "_general", class="active") General
+                                                li.tab
+                                                        a(href="#question_" + index + "_validation") Validation
+                                                li.tab
+                                                        a(href="#question_" + index + "_answers") Possible Answers
+                                .col.s12.input-field(id="question_" + index + "_general")
+                                        div                                                                
+                                                label(for=questionNameAttr + "['title']") Question Label
+                                                input(type='text', name=questionNameAttr + "[title]", id=questionNameAttr + "[title]")
+                                        div
+                                                label Question Type
+                                                select(name=questionNameAttr + "[type]")
+                                                        option(value="text", selected=question.type=='text') Text
+                                                        option(value="textarea", selected=question.type=='textarea') Textarea
+                                                        option(value="radio", selected=question.type=='radio') Radio
+                                                        option(value="checkbox", selected=question.type=='checkbox') Checkbox
+                                                        option(value="checkbox", selected=question.type=='dropdown') Dropdown
+                                .col.s12.input-field(id="question_" + index + "_validation")   
+                                        div.required                                                            
+                                                label(for=questionNameAttr + "[validation][is_required]", class="active") Required
+                                                select(name=questionNameAttr + "[validation][is_required]")
+                                                        option(value="true") Yes
+                                                        option(value="false") No 
+                                        div.validation-type
+                                                label(for=questionNameAttr + "[validation][type]", class="active") Type
+                                                select(name=questionNameAttr + "[validation][type]")
+                                                        option(value="none", selected=question.validation.type=='none') None
+                                                        option(value="phone", selected=question.validation.type=='phone') Phone Number
+                                                        option(value="email", selected=question.validation.type=='email') Email Address 
+                .actions
+                        .contain.right
+                                a.action(id="add-question", data-question-id=question._id) 
+                                        i.material-icons add 
+                                        span Insert Question  
+                                //- .col.s12.input-field(id="question_" + index + "_answers")  
+                                        //- each possibleAnswer, indexB in question.answers 
+                //-                                         -var possibleAnswerNameAttr = "questions[" + index + "][answers][" + indexB + "]";
+                //-                                         div.possible-answer.row
+                //-                                                 .col.s3
+                //-                                                         label(for=possibleAnswerNameAttr + "[label]", class="active") Label
+                //-                                                         input(type='text', name=possibleAnswerNameAttr + "[label]", id=possibleAnswerNameAttr + "[label]", value=possibleAnswer.label)
+                //-                                                 .col.s3
+                //-                                                         label(for=possibleAnswerNameAttr + "[value]", class="active") Value
+                //-                                                         input(type='text', name=possibleAnswerNameAttr + "[value]", id=possibleAnswerNameAttr + "[value]", value=possibleAnswer.value)
+                //-                                                 .col-s3
+                //-                                                         if indexB == question.answers.length - 1
+                //-                                                                 a(class="btn add-answer")
+                //-                                                                         i(class="material-icons") add
+                //-                                                                         span New 
+                //-                                                         a(class="btn remove-answer")
+                //-                                                                 i(class="material-icons") cancel
+                //-                                                                 span
