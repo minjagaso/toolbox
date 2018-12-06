@@ -5,10 +5,6 @@ var AnswerSchema = new mongoose.Schema({
         value: String
 });
 
-var SubmissionSchema = new mongoose.Schema({
-        answers: [ AnswerSchema ]
-});
-
 var QuestionSchema = new mongoose.Schema({
         sort_order: Number,
         type: {
@@ -40,7 +36,8 @@ var QuestionSchema = new mongoose.Schema({
                         type: String,
                         default: 'Other'
                 }
-        }
+        },
+        answers: [AnswerSchema]
 });
 
 var FormSchema = new mongoose.Schema({
@@ -54,7 +51,6 @@ var FormSchema = new mongoose.Schema({
         email_to: String,
         email_subject: String,
         questions: [QuestionSchema],
-        submissions: [SubmissionSchema],
         is_deleted: {
                 type: Boolean,
                 default: false

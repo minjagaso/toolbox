@@ -32,6 +32,7 @@
     "compression": "^1.7.3",
     "express": "^4.16.4",
     "helmet": "^3.15.0",
+    "html-pdf": "^2.2.0",
     "jsdom": "^13.0.0",
     "mongoose": "^5.3.13",
     "morgan": "^1.9.1",
@@ -39,7 +40,7 @@
     "pug": "^2.0.3",
     "request": "^2.88.0"
   },
-  "devDependencies": {    
+  "devDependencies": {
     "browser-sync": "^2.26.3",
     "gulp": "^3.9.1",
     "gulp-autoprefixer": "^6.0.0",

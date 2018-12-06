@@ -47,3 +47,13 @@
                 color: color("grey", "base");
         }
 }
+.preview {
+        border: 1px solid color("light-blue", "base");
+        margin-right: 8px;
+        i {
+                vertical-align: bottom;
+        }
+        &:hover {
+                background-color: color("light-blue", "base");
+        }
+}

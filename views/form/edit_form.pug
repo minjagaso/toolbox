@@ -12,6 +12,18 @@ block content
                                 a(href="/", class="breadcrumb") Toolbox
                                 a(href="/forms", class="breadcrumb") Forms
                                 a(href="#", class="breadcrumb")= doc.form.title
+        div(style="display:block;")
+                ul.actions
+                        li
+                                a.action.preview(href="/public/form/" + doc.form._id, target="_blank")
+                                        i.material-icons search
+                                        span Preview
+                                a.action.preview(href="/public/form/bswh/" + doc.form._id, target="_blank")
+                                        i.material-icons search
+                                        span Preview on .MED
+                                a.action.preview(href="/public/form/bswhcom/" + doc.form._id, target="_blank")
+                                        i.material-icons search
+                                        span Preview on .COM
         form(action="", method="post")
                 div(class="message")
                 input(type="hidden", name="_method", value="put")
@@ -93,24 +105,25 @@ block content
                                                                                                 option(value="none", selected=question.validation.type=='none') None
                                                                                                 option(value="phone", selected=question.validation.type=='phone') Phone Number
                                                                                                 option(value="email", selected=question.validation.type=='email') Email Address 
-                                                                        .col.s12.input-field(id="question_" + index + "_answers")  
-                                                                                each possibleAnswer, indexB in question.answers 
-                                                                                        -var possibleAnswerNameAttr = "questions[" + index + "][answers][" + indexB + "]";
-                                                                                        div.possible-answer.row
-                                                                                                .col.s3
-                                                                                                        label(for=possibleAnswerNameAttr + "[label]", class="active") Label
-                                                                                                        input(type='text', name=possibleAnswerNameAttr + "[label]", id=possibleAnswerNameAttr + "[label]", value=possibleAnswer.label)
-                                                                                                .col.s3
-                                                                                                        label(for=possibleAnswerNameAttr + "[value]", class="active") Value
-                                                                                                        input(type='text', name=possibleAnswerNameAttr + "[value]", id=possibleAnswerNameAttr + "[value]", value=possibleAnswer.value)
-                                                                                                .col-s3
-                                                                                                        if indexB == question.answers.length - 1
-                                                                                                                a(class="btn add-answer")
-                                                                                                                        i(class="material-icons") add
-                                                                                                                        span New 
-                                                                                                        a(class="btn remove-answer")
-                                                                                                                i(class="material-icons") cancel
-                                                                                                                span Delete
+                                                                        if question.answers
+                                                                                .col.s12.input-field(id="question_" + index + "_answers")  
+                                                                                        each possibleAnswer, indexB in question.answers 
+                                                                                                -var possibleAnswerNameAttr = "questions[" + index + "][answers][" + indexB + "]";
+                                                                                                div.possible-answer.row
+                                                                                                        .col.s3
+                                                                                                                label(for=possibleAnswerNameAttr + "[label]", class="active") Label
+                                                                                                                input(type='text', name=possibleAnswerNameAttr + "[label]", id=possibleAnswerNameAttr + "[label]", value=possibleAnswer.label)
+                                                                                                        .col.s3
+                                                                                                                label(for=possibleAnswerNameAttr + "[value]", class="active") Value
+                                                                                                                input(type='text', name=possibleAnswerNameAttr + "[value]", id=possibleAnswerNameAttr + "[value]", value=possibleAnswer.value)
+                                                                                                        .col-s3
+                                                                                                                if indexB == question.answers.length - 1
+                                                                                                                        a(class="btn add-answer")
+                                                                                                                                i(class="material-icons") add
+                                                                                                                                span New 
+                                                                                                                a(class="btn remove-answer")
+                                                                                                                        i(class="material-icons") cancel
+                                                                                                                        span Delete
                                                         .actions
                                                                 .contain.right
                                                                         a.action(id="add-question", data-question-id=question._id) 

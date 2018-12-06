@@ -1,0 +1,38 @@
+extend ../../../base
+
+block content
+        link(rel="stylesheet", href="http://localhost:3000/css/main.css")
+        -var submissionsCount = doc.form.submissions.length
+        h2#pageHeader= doc.form.title 
+                span &nbsp; (
+                span= submissionsCount
+                span &nbsp;submissions)
+        hr
+        if doc.form.questions
+                each question, index in doc.form.questions
+                        table
+                                thead
+                                        tr
+                                                th= question.title
+                                tbody
+                                        //- p= submissionsCount
+                                        //- span= doc.form.submissions
+                                        if doc.form.submissions
+                                                each submission, indexS in doc.form.submissions
+                                                        each answer, indexA in submission.answers
+                                                                tr
+                                                                        td= submission
+                                                                        //- td= submission[indexA].answer[indexS].value
+        if doc.form.submissions 
+                each submission in doc.form.submissions   
+                        if submission.answers.length > 0      
+                                table(style="margin-bottom:80px;display:none;")
+                                        tr
+                                                th Label
+                                                th Value                       
+                                        each answer, index in submission.answers                          
+                                                tr                                 
+                                                        td= answer.label
+                                                        td= answer.value
+        else
+                p No submissions

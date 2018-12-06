@@ -12,73 +12,14 @@ block content
                         each question, index in doc.form.questions
                                 .row
                                         .input-field.col.s12
-                                                -var submissionNameAttr = "submission[question][" + index + "]";
-                                                label(for=submissionNameAttr + "['title']")= question.title
-                                                input(type='text', name=submissionNameAttr + "[title]", id=submissionNameAttr + "[title]", field=question.title, placeholder=question.title + (question.is_required ? '*':''))
-                        ul.collapsible
-                                each question, index in doc.form.questions
-                                        li(class=(index == 0) ? 'active': '')
-                                                .collapsible-header
-                                                        i.material-icons add
-                                                        span= question.title
-                                                .collapsible-body
-                                                        .row
-                                                                .input-field.col.s12
-                                                                        -var questionNameAttr = "questions[" + index + "]";
-                                                                        .row
-                                                                                .col.s12
-                                                                                        ul.tabs
-                                                                                                li.tab
-                                                                                                        a(href="#question_" + index + "_general", class="active") General
-                                                                                                li.tab
-                                                                                                        a(href="#question_" + index + "_validation") Validation
-                                                                                                li.tab
-                                                                                                        a(href="#question_" + index + "_answers") Possible Answers
-                                                                                .col.s12.input-field(id="question_" + index + "_general")
-                                                                                        div                                                                
-                                                                                                label(for=questionNameAttr + "['title']") Question Label
-                                                                                                input(type='text', name=questionNameAttr + "[title]", id=questionNameAttr + "[title]", value=question.title)
-                                                                                        div
-                                                                                                label Question Type
-                                                                                                select(name=questionNameAttr + "[type]")
-                                                                                                        option(value="text", selected=question.type=='text') Text
-                                                                                                        option(value="textarea", selected=question.type=='textarea') Textarea
-                                                                                                        option(value="radio", selected=question.type=='radio') Radio
-                                                                                                        option(value="checkbox", selected=question.type=='checkbox') Checkbox
-                                                                                                        option(value="checkbox", selected=question.type=='dropdown') Dropdown
-                                                                                .col.s12.input-field(id="question_" + index + "_validation")   
-                                                                                        div.required                                                            
-                                                                                                label(for=questionNameAttr + "[validation][is_required]", class="active") Required
-                                                                                                select(name=questionNameAttr + "[validation][is_required]")
-                                                                                                        option(value="true", selected=question.validation.is_required==true) Yes
-                                                                                                        option(value="false", selected=question.validation.is_required==false) No 
-                                                                                        div.validation-type
-                                                                                                label(for=questionNameAttr + "[validation][type]", class="active") Type
-                                                                                                select(name=questionNameAttr + "[validation][type]")
-                                                                                                        option(value="none", selected=question.validation.type=='none') None
-                                                                                                        option(value="phone", selected=question.validation.type=='phone') Phone Number
-                                                                                                        option(value="email", selected=question.validation.type=='email') Email Address 
-                                                                                .col.s12.input-field(id="question_" + index + "_answers")  
-                                                                                        each possibleAnswer, indexB in question.answers 
-                                                                                                -var possibleAnswerNameAttr = "questions[" + index + "][answers][" + indexB + "]";
-                                                                                                div.possible-answer.row
-                                                                                                        .col.s3
-                                                                                                                label(for=possibleAnswerNameAttr + "[label]", class="active") Label
-                                                                                                                input(type='text', name=possibleAnswerNameAttr + "[label]", id=possibleAnswerNameAttr + "[label]", value=possibleAnswer.label)
-                                                                                                        .col.s3
-                                                                                                                label(for=possibleAnswerNameAttr + "[value]", class="active") Value
-                                                                                                                input(type='text', name=possibleAnswerNameAttr + "[value]", id=possibleAnswerNameAttr + "[value]", value=possibleAnswer.value)
-                                                                                                        .col-s3
-                                                                                                                if indexB == question.answers.length - 1
-                                                                                                                        a(class="btn add-answer")
-                                                                                                                                i(class="material-icons") add
-                                                                                                                                span New 
-                                                                                                                a(class="btn remove-answer")
-                                                                                                                        i(class="material-icons") cancel
-                                                                                                                        span Delete                                                                                                                     
+                                                -var submissionNameAttr = "submission[answers][" + index + "]";
+                                                label(for=submissionNameAttr + "[label]")= question.title
+                                                input(type='hidden', name=submissionNameAttr + "[label]", value=question.title)
+                                                input(type='text', name=submissionNameAttr + "[value]", id=submissionNameAttr + "[value]", 
+                                                        field=question.title, placeholder=question.title + (question.is_required ? '*':''))                                                                                                         
                 .row
                         .col
                         input(type="submit", value="Save", class="btn green", id="save")
                         a(href="/form", class="btn red", id="cancel") Cancel
-block append footer
-        script(src="/js/form/edit_form.js")
+//- block append footer
+//-         script(src="/js/form/edit_form.js")
